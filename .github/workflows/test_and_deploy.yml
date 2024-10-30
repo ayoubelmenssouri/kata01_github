@@ -20,7 +20,7 @@ on:
 jobs:
   test_add:
     runs-on: ubuntu-latest
-        if: github.event_name == 'push' || input.action != 'soustraction' 
+    if: input.action == 'push' || input.action != 'soustraction' 
 
     steps:
       - name: Checkout repository
