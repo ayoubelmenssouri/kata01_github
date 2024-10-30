@@ -18,7 +18,7 @@ on:
 jobs:
   test_add:
     runs-on: ubuntu-latest
-    if: github.event_name == 'push' || .inputs.action != 'soustraction' 
+    if: github.event_name == 'push' || inputs.action != 'soustraction' 
 
     steps:
       - name: Checkout repository
@@ -37,7 +37,7 @@ jobs:
         
   test_sub:
     runs-on: ubuntu-latest
-    if: github.event_name == 'push' || github.event.inputs.action != 'addition' 
+    if: github.event_name == 'push' || inputs.action != 'addition' 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
