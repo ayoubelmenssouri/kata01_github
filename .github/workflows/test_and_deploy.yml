@@ -20,7 +20,7 @@ on:
 jobs:
   test_add:
     runs-on: ubuntu-latest
-    if: input.action == 'push' || input.action != 'soustraction' 
+    if: inputs.action == 'push' || input.action != 'soustraction' 
 
     steps:
       - name: Checkout repository
@@ -39,7 +39,7 @@ jobs:
         
   test_sub:
     runs-on: ubuntu-latest
-    if: github.event_name == 'push' || input.action != 'addition' 
+    if: inputs.action == 'push' || input.action != 'addition' 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
@@ -58,7 +58,7 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     needs: [test_add, test_sub]
-    if: input.action == 'deploiment'
+    if: inputs.action == 'deploiment'
     steps:
       - name: Deployment
         run: echo "Déploiement"
