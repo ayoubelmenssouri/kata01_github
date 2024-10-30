@@ -15,7 +15,7 @@ on:
           -soustraction
           -deploiment
           -all_tests
-        default : deploy
+        default: "deploy"
 
 jobs:
   test_add:
