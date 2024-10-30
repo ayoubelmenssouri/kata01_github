@@ -4,21 +4,18 @@ on:
   push:
   workflow_dispatch:
     inputs:
-      deploy:
-        description: "jouer un deploiment ?"
+      action:
+        description: "que puvez vous jouer ?"
         required: false
         default: true
-      test_add:
-        description: "jouer un addition"
-        required: false
-        default: false
-      test_sub:
-        description: " jouer les tests de soustraction"
-        required: false
-      all_tests:
-        description: "jouer tous les tests ?"
-        required: false
-        default: false
+        type : choice
+        options :
+          -deploiment
+          -addition
+          -soustraction
+          -deploiment
+          -all tests
+        default : deploy
 
 jobs:
   test_add:
@@ -26,10 +23,10 @@ jobs:
     if: github.event_name == 'push' || github.event.inputs.test_add == 'true' || github.event.inputs.all_tests == 'true' || github.event.inputs.deploy == 'true'
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Setup Node.js
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
           node-version: 16
 
@@ -44,10 +41,10 @@ jobs:
     if: github.event_name == 'push' || github.event.inputs.test_sub == 'true' || github.event.inputs.all_tests == 'true' || github.event.inputs.deploy == 'true'
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Setup Node.js
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
           node-version: 16
 
