@@ -19,3 +19,55 @@ on:
         description: "jouer tous les tests ?"
         required: false
         default: false
+
+jobs:
+  test_add:
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push' || github.event.inputs.test_add == 'true' || github.event.inputs.all_tests == 'true' || github.event.inputs.deploy == 'true'
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: 16
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run test_add
+        run: npm run test_add
+        
+  test_sub:
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push' || github.event.inputs.test_sub == 'true' || github.event.inputs.all_tests == 'true' || github.event.inputs.deploy == 'true'
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: 16
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run test_sub
+        run: npm run test_sub
+  
+  deploy:
+    runs-on: ubuntu-latest
+    needs: [test_add, test_sub]
+    if: github.event.inputs.deploy == 'true'
+    steps:
+      - name: Deployment
+        run: echo "Déploiement"
+
+  notify_failure:
+    runs-on: ubuntu-latest
+    if: failure()
+    steps:
+      - name: Notify failure
+        run: echo "Le déploiement echoue"
