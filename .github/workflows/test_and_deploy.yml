@@ -10,12 +10,12 @@ on:
         default: true
         type : choice
         options :
-          -deploiment
-          -addition
-          -soustraction
-          -deploiment
-          -all_tests
-        default : deploy
+          - deploiment
+          - addition
+          - soustraction
+          - deploiment
+          - all_tests
+        default : "deploy"
 
 jobs:
   test_add:
