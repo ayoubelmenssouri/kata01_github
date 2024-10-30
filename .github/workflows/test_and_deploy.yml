@@ -5,7 +5,7 @@ on:
   workflow_dispatch:
     inputs:
       action:
-        description: "que puvez vous jouer ?"
+        description: "que souhaitez vous jouer ?"
         required: false
         default: true
         type : choice
