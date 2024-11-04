@@ -23,7 +23,7 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3 
-        
+
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
@@ -56,7 +56,7 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     needs: [test_add, test_sub]
-    if: inputs.action == 'deploiment'
+    if: inputs.action == 'deploiment' || github.event_name == 'push'
     steps:
       - name: Deployment
         run: echo "Déploiement"
