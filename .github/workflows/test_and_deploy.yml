@@ -22,7 +22,7 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v3 // pourque peut acceder a les repos
 
       - name: Setup Node.js
         uses: actions/setup-node@v3
